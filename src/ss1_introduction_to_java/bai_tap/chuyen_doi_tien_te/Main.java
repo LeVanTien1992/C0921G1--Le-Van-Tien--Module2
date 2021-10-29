@@ -11,5 +11,7 @@ public class Main {
         usd = scanner.nextDouble();
         double vnd = usd * rate ;
         System.out.println("Giá trị vnd " +vnd);
+
     }
+
 }
