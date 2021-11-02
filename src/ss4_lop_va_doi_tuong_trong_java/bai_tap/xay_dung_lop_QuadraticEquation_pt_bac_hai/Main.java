@@ -7,11 +7,8 @@ public class Main {
         double a, b, c;
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a, b, c: ");
-        System.out.println("Nhap a ");
         a = scanner.nextDouble();
-        System.out.println("Nhap b ");
         b = scanner.nextDouble();
-        System.out.println("Nhap c ");
         c = scanner.nextDouble();
 
         QuadraticEquation tony = new QuadraticEquation(a, b, c);

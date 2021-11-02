@@ -39,9 +39,9 @@ public class QuadraticEquation {
         if (a==0){
             if(b==0){
                 if(c==0){
-                    System.out.println("The equation has no solution");
+                    System.out.println("Infinitely many solutions");
                 }else {
-                    System.out.println("infinitely many solutions");
+                    System.out.println("The equation has no solution");
                 }
             }else {
                 System.out.println("The equation has one roots =" + getRoot0());
