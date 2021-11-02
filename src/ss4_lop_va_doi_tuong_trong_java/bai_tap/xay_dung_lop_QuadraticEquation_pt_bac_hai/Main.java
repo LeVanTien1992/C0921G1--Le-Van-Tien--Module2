@@ -7,19 +7,14 @@ public class Main {
         double a, b, c;
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a, b, c: ");
+        System.out.println("Nhap a ");
         a = scanner.nextDouble();
+        System.out.println("Nhap b ");
         b = scanner.nextDouble();
+        System.out.println("Nhap c ");
         c = scanner.nextDouble();
 
         QuadraticEquation tony = new QuadraticEquation(a, b, c);
-        if (tony.getDiscriminant() < 0) {
-            System.out.println("The equation has no roots!");
-        } else if (tony.getDiscriminant() == 0) {
-            System.out.println("The equation has one roots =" + tony.getRoot0());
-        } else {
-            System.out.println("Delta =" + tony.getDiscriminant());
-            System.out.println("Root1 =" + tony.getRoot1());
-            System.out.println("Root2 =" + tony.getRoot2());
-        }
+        tony.giaiPT();
     }
 }

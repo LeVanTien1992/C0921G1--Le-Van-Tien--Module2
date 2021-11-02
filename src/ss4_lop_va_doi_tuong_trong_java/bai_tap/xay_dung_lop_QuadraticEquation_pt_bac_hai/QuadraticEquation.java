@@ -23,21 +23,39 @@ public class QuadraticEquation {
         return Math.pow(b, 2) - 4*a*c;
     }
     public double getRoot0(){
-        if(getDiscriminant()< 0){
-            return 0;
-        }
-        return (-b/(2*a));
+        return -c/b;
     }
+    public double getRoot3(){
+        return -b/2*a;
+    }
+
     public double getRoot1(){
-        if(getDiscriminant()< 0){
-            return 0;
-        }
-        return ((-b + Math.sqrt(getDiscriminant()))/(2*a));
+      return (-b-Math.sqrt(getDiscriminant()))/(2*a);
     }
     public double getRoot2(){
-       if (getDiscriminant()<0){
-           return 0;
-       }
-       return ((-b - Math.sqrt(getDiscriminant()))/(2*a));
+        return (-b+Math.sqrt(getDiscriminant()))/(2*a);
+    }
+    public void giaiPT(){
+        if (a==0){
+            if(b==0){
+                if(c==0){
+                    System.out.println("The equation has no solution");
+                }else {
+                    System.out.println("infinitely many solutions");
+                }
+            }else {
+                System.out.println("The equation has one roots =" + getRoot0());
+            }
+        }else {
+            if (getDiscriminant() < 0) {
+                System.out.println("The equation has no roots!");
+            } else if (getDiscriminant() == 0) {
+                System.out.println("The equation has one roots =" + getRoot3());
+            } else {
+                System.out.println("Delta =" + getDiscriminant());
+                System.out.println("Root1 =" + getRoot1());
+                System.out.println("Root2 =" + getRoot2());
+            }
+        }
     }
 }
