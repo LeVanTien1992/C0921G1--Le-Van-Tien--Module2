@@ -1,12 +1,15 @@
 package ss7_abstract_class_va_interface.thuc_hanh.lop_animal_va_interface_edible;
 
-public class AbstratAndInterfaceTest {
+public class AbstractAndInterfaceTests {
     public static void main(String[] args) {
-        Animal[] animals = new Animal[2];
-        animals[0] = new Tiger();
-        animals[1] = new Chicken();
-        for (Animal animal : animals) {
-            animal.makeSound();
-        }
+        Chicken chicken = new Chicken();
+        Tiger tiger =new Tiger();
+        Orange orange = new Orange();
+        Apple apple = new Apple();
+        System.out.println(chicken.makeSound()+"\n"+chicken.howToEat());
+        System.out.println(tiger.makeSound()+"\n"+chicken.howToEat());
+        System.out.println(orange.howToEat());
+        System.out.println(apple.howToEat());
+
     }
 }

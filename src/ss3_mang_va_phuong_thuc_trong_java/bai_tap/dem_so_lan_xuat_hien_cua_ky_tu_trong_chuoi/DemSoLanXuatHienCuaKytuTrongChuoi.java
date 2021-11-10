@@ -1,6 +1,9 @@
 package ss3_mang_va_phuong_thuc_trong_java.bai_tap.dem_so_lan_xuat_hien_cua_ky_tu_trong_chuoi;
 
+import java.util.Arrays;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class DemSoLanXuatHienCuaKytuTrongChuoi {
     public static void main(String[] args) {
@@ -19,6 +22,7 @@ public class DemSoLanXuatHienCuaKytuTrongChuoi {
             }
         }
         System.out.println("Số lần xuất hiện của ký tự " +kyTu+ " trong chuỗi = " +count);
+
 
 
 

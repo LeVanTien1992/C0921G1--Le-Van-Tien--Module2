@@ -36,6 +36,7 @@ public class Point {
         f[1] = y;
         return f;
     }
+    
     public String toString(){
         return ("X= " +x+ "Y=" +y);
     }

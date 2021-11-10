@@ -5,13 +5,11 @@ import java.util.Scanner;
 public class XoaPhanTuKhoiMang {
     public static void main(String[] args) {
         // khái báo biến và nhập
-        int n;
-        int[] arr;
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhập vào độ của mảng: ");
-        n = sc.nextInt();
+        int n = sc.nextInt();
         // nhập các phần tử của mảng
-        arr = new int[n];
+        int[] arr = new int[n];
         for (int i = 0; i < arr.length; i++) {
             System.out.print("Nhập vào phần tử thứ " +i+ ": ");
             arr[i] = sc.nextInt();

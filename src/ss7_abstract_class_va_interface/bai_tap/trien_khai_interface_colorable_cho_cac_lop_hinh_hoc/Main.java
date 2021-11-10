@@ -10,8 +10,6 @@ public class Main {
         for (Geometric geometric : c) {
             if (geometric.equals(c[3])) {
                 System.out.println(geometric.getArea());
-            }else {
-                //System.out.println(geometric.howToColor());
             }
         }
     }
