@@ -1,4 +1,4 @@
 package case_study.service;
 
-public interface FacilityService {
+public interface FacilityService extends Service{
 }
