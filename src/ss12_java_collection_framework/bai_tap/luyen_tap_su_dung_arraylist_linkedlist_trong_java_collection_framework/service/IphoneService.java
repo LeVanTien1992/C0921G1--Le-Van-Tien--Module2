@@ -1,0 +1,4 @@
+package ss12_java_collection_framework.bai_tap.luyen_tap_su_dung_arraylist_linkedlist_trong_java_collection_framework.service;
+
+public interface IphoneService extends QuanLySanPham{
+}
