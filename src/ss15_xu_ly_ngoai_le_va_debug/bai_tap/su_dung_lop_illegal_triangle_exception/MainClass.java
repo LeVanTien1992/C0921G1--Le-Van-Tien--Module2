@@ -5,11 +5,7 @@ import java.util.Scanner;
 public class MainClass {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        // Khai bao doi tuong
         TriangleEdgesCheck check = new TriangleEdgesCheck();
-
-        // Nhap du lieu
         try {
             System.out.print("Nhập vào cạnh thứ nhất: ");
             int a = sc.nextInt();
@@ -25,6 +21,8 @@ public class MainClass {
             }
         } catch (Exception e) {
             System.out.println("Sai: Không đúng định dạng!");
+        }finally {
+            System.out.println("Đã xủ lý ngoại lệ!");
         }
 
         sc.close();
