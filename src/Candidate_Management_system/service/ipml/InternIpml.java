@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class InternIpml implements CandidateManagementSystem {
     static List<Intern> internList = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
+    Validate validate = new Validate();
     @Override
     public void add() {
         Intern intern4 = new Intern();
@@ -21,14 +22,14 @@ public class InternIpml implements CandidateManagementSystem {
         intern4.setFirstName(scanner.nextLine());
         System.out.println("Add new last name");
         intern4.setLastName(scanner.nextLine());
-        System.out.println("Add new birth date");
-        intern4.setBirthDate(scanner.nextLine());
+//        System.out.println("Add new birth date");
+        intern4.setBirthDate(validate.validateBirthDate());
         System.out.println("Add new address");
         intern4.setAddress(scanner.nextLine());
-        System.out.println("Add new phone");
-        intern4.setPhone(Integer.parseInt(scanner.nextLine()));
-        System.out.println("Add new email");
-        intern4.setEmail(scanner.nextLine());
+//        System.out.println("Add new phone");
+        intern4.setPhone(Integer.parseInt(validate.validatePhone()));
+//        System.out.println("Add new email");
+        intern4.setEmail(validate.validateEmail());
         System.out.println("Add new type");
         intern4.setType(scanner.nextLine());
         System.out.println("Add new the majors");
@@ -38,9 +39,7 @@ public class InternIpml implements CandidateManagementSystem {
         System.out.println("Add new unniversity name");
         intern4.setUniversityName(scanner.nextLine());
         internList.add(intern4);
-        for (Intern intern:internList) {
-            System.out.println(intern);
-        }
+        display();
     }
 
     @Override
@@ -53,14 +52,14 @@ public class InternIpml implements CandidateManagementSystem {
                 String firstName = scanner.nextLine();
                 System.out.println("Edit the last name");
                 String lastName = scanner.nextLine();
-                System.out.println("Edit the birth date");
-                String birthDate = scanner.nextLine();
+//                System.out.println("Edit the birth date");
+                String birthDate = validate.validateBirthDate();
                 System.out.println("Edit the address");
                 String address = scanner.nextLine();
-                System.out.println("Edit the phone");
-                int phone = Integer.parseInt(scanner.nextLine());
-                System.out.println("Edit the email");
-                String email = scanner.nextLine();
+//                System.out.println("Edit the phone");
+                int phone = Integer.parseInt(validate.validatePhone());
+//                System.out.println("Edit the email");
+                String email = validate.validateEmail();
                 System.out.println("Edit the type");
                 String type = scanner.nextLine();
                 System.out.println("Edit the majors");
@@ -84,9 +83,7 @@ public class InternIpml implements CandidateManagementSystem {
                 break;
             }
         }
-        for (Intern intern:internList) {
-            System.out.println(intern);
-        }
+        display();
     }
 
     @Override
@@ -107,10 +104,10 @@ public class InternIpml implements CandidateManagementSystem {
     }
 
     static {
-        internList.add(new Intern(001, "Waynee", "Rooney","11/1/2020", "1 NewYork", 9898989, "code@gmail.com","Exelent", "Accouting", 2, "Stanford"));
-        internList.add(new Intern(001, "Waynee", "Rooney","11/1/2020", "1 NewYork", 9898989, "code@gmail.com","Exelent", "Accouting", 2, "Stanford"));
-        internList.add(new Intern(001, "Cristiano", "Ronaldo","11/1/2020", "1 NewYork", 9898989, "code@gmail.com","Exelent", "Accouting", 2, "Stanford"));
-        internList.add(new Intern(001, "Leo", "Messi","11/1/2020", "1 NewYork", 9898989, "code@gmail.com","Exelent", "Accouting", 2, "Stanford"));
+        internList.add(new Intern(101, "Waynee", "Rooney","11/1/2020", "1 NewYork", 9898989, "code@gmail.com","Exelent", "Accouting", 2, "Stanford"));
+        internList.add(new Intern(201, "Waynee", "Rooney","11/1/2020", "1 NewYork", 9898989, "code@gmail.com","Exelent", "Accouting", 2, "Stanford"));
+        internList.add(new Intern(301, "Cristiano", "Ronaldo","11/1/2020", "1 NewYork", 9898989, "code@gmail.com","Exelent", "Accouting", 2, "Stanford"));
+        internList.add(new Intern(401, "Leo", "Messi","11/1/2020", "1 NewYork", 9898989, "code@gmail.com","Exelent", "Accouting", 2, "Stanford"));
     }
     @Override
     public void display() {

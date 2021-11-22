@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class ExperienceIpml implements CandidateManagementSystem {
     static List<Experience> experienceList = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
+    Validate validate = new Validate();
 
     @Override
     public void add() {
@@ -22,23 +23,23 @@ public class ExperienceIpml implements CandidateManagementSystem {
         System.out.println("Add new last name");
         experience4.setLastName(scanner.nextLine());
         System.out.println("Add new birth date");
-        experience4.setBirthDate(scanner.nextLine());
+        experience4.setBirthDate(validate.validateBirthDate());
         System.out.println("Add new address");
         experience4.setAddress(scanner.nextLine());
-        System.out.println("Add new phone");
-        experience4.setPhone(Integer.parseInt(scanner.nextLine()));
-        System.out.println("Add new email");
-        experience4.setEmail(scanner.nextLine());
+//        System.out.println("Add new phone");
+        experience4.setPhone(Integer.parseInt(validate.validatePhone()));
+//        System.out.println("Add new email");
+       ;
+        experience4.setEmail(validate.validateEmail());
         System.out.println("Add new type");
         experience4.setType(scanner.nextLine());
-        System.out.println("Add new year of experience");
-        experience4.setYearOfExperience(Integer.parseInt(scanner.nextLine()));
+//        System.out.println("Add new year of experience");
+
+        experience4.setYearOfExperience(Integer.parseInt(validate.validateYearOfExperience()));
         System.out.println("Add new professional skills");
         experience4.setProfessionalSkill(scanner.nextLine());
         experienceList.add(experience4);
-        for (Experience experience:experienceList) {
-            System.out.println(experience);
-        }
+       display();
     }
 
     @Override
@@ -51,18 +52,18 @@ public class ExperienceIpml implements CandidateManagementSystem {
                 String firstName = scanner.nextLine();
                 System.out.println("Edit the last name");
                 String lastName = scanner.nextLine();
-                System.out.println("Edit the birth date");
-                String birthDate = scanner.nextLine();
+//                System.out.println("Edit the birth date");
+                String birthDate = validate.validateBirthDate();
                 System.out.println("Edit the address");
                 String address = scanner.nextLine();
-                System.out.println("Edit the phone");
-                int phone = Integer.parseInt(scanner.nextLine());
-                System.out.println("Edit the email");
-                String email = scanner.nextLine();
+//                System.out.println("Edit the phone");
+                int phone = Integer.parseInt(validate.validatePhone());
+//                System.out.println("Edit the email");
+                String email = validate.validateEmail();
                 System.out.println("Edit the type");
                 String type = scanner.nextLine();
-                System.out.println("Edit the year of experience");
-                int yearOfExperince = Integer.parseInt(scanner.nextLine());
+//                System.out.println("Edit the year of experience");
+                int yearOfExperince = Integer.parseInt(validate.validateYearOfExperience());
                 System.out.println("Edit the professional skills");
                 String skills = scanner.nextLine();
 
@@ -79,9 +80,7 @@ public class ExperienceIpml implements CandidateManagementSystem {
                 break;
             }
         }
-        for (Experience experience:experienceList) {
-            System.out.println(experience);
-        }
+        display();
     }
 
     @Override
@@ -102,10 +101,10 @@ public class ExperienceIpml implements CandidateManagementSystem {
     }
 
     static {
-        experienceList.add(new Experience(001, "Donal", "Trump","11/1/2020", "1 NewYork", 9898989, "code@gmail.com","Exelent", 4, "Developer"));
-        experienceList.add(new Experience(001, "Donal", "Trump","11/1/2020", "1 NewYork", 9898989, "code@gmail.com","Exelent", 4, "Developer"));
+        experienceList.add(new Experience(001, "Donal", "Trump","11/1/2020", "1 NewYork", 9898989, "code@gmail.com","Excellent", 4, "Developer"));
+        experienceList.add(new Experience(001, "Donal", "Trump","11/1/2020", "1 NewYork", 9898989, "code@gmail.com","Excellent", 4, "Developer"));
         experienceList.add(new Experience(002, "Tony", "Teo","11/1/2020", "1 Houston", 9898989, "code@gmail.com","Good", 4, "Developer"));
-        experienceList.add(new Experience(003, "Elon", "Mark","11/1/2020", "1 California", 9898989, "code@gmail.com","Exelent", 4, "Developer"));
+        experienceList.add(new Experience(003, "Elon", "Mark","11/1/2020", "1 California", 9898989, "code@gmail.com","Excellent", 4, "Developer"));
     }
     @Override
     public void display() {

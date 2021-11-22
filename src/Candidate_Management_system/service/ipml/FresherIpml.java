@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class FresherIpml implements CandidateManagementSystem {
     static List<Fresher> fresherList = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
-
+    Validate validate = new Validate();
     @Override
     public void add() {
         Fresher fresher4 = new  Fresher();
@@ -21,26 +21,24 @@ public class FresherIpml implements CandidateManagementSystem {
         fresher4.setFirstName(scanner.nextLine());
         System.out.println("Add new last name");
         fresher4.setLastName(scanner.nextLine());
-        System.out.println("Add new birth date");
-        fresher4.setBirthDate(scanner.nextLine());
+//        System.out.println("Add new birth date");
+        fresher4.setBirthDate(validate.validateBirthDate());
         System.out.println("Add new address");
         fresher4.setAddress(scanner.nextLine());
-        System.out.println("Add new phone");
-        fresher4.setPhone(Integer.parseInt(scanner.nextLine()));
-        System.out.println("Add new email");
-        fresher4.setEmail(scanner.nextLine());
+//        System.out.println("Add new phone");
+        fresher4.setPhone(Integer.parseInt(validate.validatePhone()));
+//        System.out.println("Add new email");
+        fresher4.setEmail(validate.validateEmail());
         System.out.println("Add new type");
         fresher4.setType(scanner.nextLine());
         System.out.println("Add new the graduated time");
         fresher4.setGraduatedTime(Integer.parseInt(scanner.nextLine()));
-        System.out.println("Add new rank of education");
-        fresher4.setRankOfEducation(scanner.nextLine());
+//        System.out.println("Add new rank of education");
+        fresher4.setRankOfEducation(validate.validateRankOfGraduation());
         System.out.println("Add new graduated university");
         fresher4.setGraduatedUniversity(scanner.nextLine());
         fresherList.add(fresher4);
-        for (Fresher fresher:fresherList) {
-            System.out.println(fresher);
-        }
+        display();
     }
 
     @Override
@@ -53,20 +51,20 @@ public class FresherIpml implements CandidateManagementSystem {
                 String firstName = scanner.nextLine();
                 System.out.println("Edit the last name");
                 String lastName = scanner.nextLine();
-                System.out.println("Edit the birth date");
-                String birthDate = scanner.nextLine();
+//                System.out.println("Edit the birth date");
+                String birthDate = validate.validateBirthDate();
                 System.out.println("Edit the address");
                 String address = scanner.nextLine();
-                System.out.println("Edit the phone");
-                int phone = Integer.parseInt(scanner.nextLine());
-                System.out.println("Edit the email");
-                String email = scanner.nextLine();
+//                System.out.println("Edit the phone");
+                int phone = Integer.parseInt(validate.validatePhone());
+//                System.out.println("Edit the email");
+                String email = validate.validateEmail();
                 System.out.println("Edit the type");
                 String type = scanner.nextLine();
                 System.out.println("Edit the graduated time");
                 int graduateTime = Integer.parseInt(scanner.nextLine());
-                System.out.println("Edit the rank of education");
-                String rankOfEducation = scanner.nextLine();
+//                System.out.println("Edit the rank of education");
+                String rankOfEducation = validate.validateRankOfGraduation();
                 System.out.println("Edit the graduated university");
                 String graduatedUniversity = scanner.nextLine();
 
@@ -84,9 +82,7 @@ public class FresherIpml implements CandidateManagementSystem {
                 break;
             }
         }
-        for (Fresher fresher:fresherList) {
-            System.out.println(fresher);
-        }
+        display();
     }
 
     @Override
