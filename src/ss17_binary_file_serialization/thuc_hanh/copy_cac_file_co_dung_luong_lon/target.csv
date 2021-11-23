@@ -1,0 +1,4 @@
+experienceList.add(new Experience(001, "Donal", "Trump","11/1/2020", "1 NewYork", "98989893424", "code@gmail.com","Excellent", 4, "Developer"));
+experienceList.add(new Experience(001, "Donal", "Trump","11/1/2020", "1 NewYork", "9898989", "code@gmail.com","Excellent", 4, "Developer"));
+experienceList.add(new Experience(002, "Tony", "Teo","11/1/2020", "1 Houston", "9898989", "code@gmail.com","Good", 4, "Developer"));
+experienceList.add(new Experience(003, "Elon", "Mark","11/1/2020", "1 California", "9898989", "code@gmail.com","Excellent", 4, "Developer"));
