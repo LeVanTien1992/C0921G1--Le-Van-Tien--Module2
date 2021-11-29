@@ -6,16 +6,16 @@ public class Employee extends Person{
     private double luong;
 
     public Employee() {
-
     }
 
-    public Employee(String maSo, String hoTen, String ngaySinh, String gioiTinh, int soCMND, int soDienThoai,
-                    String email, String trinhDo, String viTri, double luong) {
+    public Employee(int maSo, String hoTen, String ngaySinh, String gioiTinh, int soCMND,
+                    int soDienThoai, String email, String trinhDo, String viTri, double luong) {
         super(maSo, hoTen, ngaySinh, gioiTinh, soCMND, soDienThoai, email);
         this.trinhDo = trinhDo;
         this.viTri = viTri;
         this.luong = luong;
     }
+
 
     public String getTrinhDo() {
         return trinhDo;
@@ -43,17 +43,16 @@ public class Employee extends Person{
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "Mã số='" + getMaSo() + '\'' +
-                "Họ Tên='" + getHoTen() + '\'' +
-                "Ngày Sinh='" + getNgaySinh() + '\'' +
-                "Giới Tính='" + getGioiTinh() + '\'' +
-                "Số CMND='" + getSoCMND() + '\'' +
-                "Số Điện Thoại='" + getSoDienThoai() + '\'' +
-                "Email='" + getEmail() + '\'' +
-                "Trình độ='" + trinhDo + '\'' +
-                ", Vị trí='" + viTri + '\'' +
-                ", Lương=" + luong +
-                '}';
+        return
+                getMaSo() + "," +
+                getHoTen() + "," +
+                getNgaySinh() + "," +
+                getGioiTinh() + "," +
+                getSoCMND() + "," +
+                getSoDienThoai() + "," +
+                getEmail() + "," +
+                trinhDo +"," +
+                viTri + "," +
+                luong;
     }
 }

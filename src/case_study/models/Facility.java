@@ -1,9 +1,12 @@
 package case_study.models;
 
-public class Facility {
+import java.util.Objects;
+
+public abstract class Facility {
+    private String maDichVu;
     private String tenDichVu;
     private double dienTichSuDung;
-    private double chiPhiPhiThue;
+    private double chiPhiThue;
     private int soLuongNguoiToiDa;
     private String kieuThue;
 
@@ -11,13 +14,21 @@ public class Facility {
 
     }
 
-    public Facility(String tenDichVu, double dienTichSuDung, double chiPhiPhiThue,
-                    int soLuongNguoiToiDa, String kieuThue) {
+    public Facility(String maDichVu, String tenDichVu, double dienTichSuDung, double chiPhiThue, int soLuongNguoiToiDa, String kieuThue) {
+        this.maDichVu = maDichVu;
         this.tenDichVu = tenDichVu;
         this.dienTichSuDung = dienTichSuDung;
-        this.chiPhiPhiThue = chiPhiPhiThue;
+        this.chiPhiThue = chiPhiThue;
         this.soLuongNguoiToiDa = soLuongNguoiToiDa;
         this.kieuThue = kieuThue;
+    }
+
+    public String getMaDichVu() {
+        return maDichVu;
+    }
+
+    public void setMaDichVu(String maDichVu) {
+        this.maDichVu = maDichVu;
     }
 
     public String getTenDichVu() {
@@ -36,12 +47,12 @@ public class Facility {
         this.dienTichSuDung = dienTichSuDung;
     }
 
-    public double getChiPhiPhiThue() {
-        return chiPhiPhiThue;
+    public double getChiPhiThue() {
+        return chiPhiThue;
     }
 
-    public void setChiPhiPhiThue(double chiPhiPhiThue) {
-        this.chiPhiPhiThue = chiPhiPhiThue;
+    public void setChiPhiThue(double chiPhiThue) {
+        this.chiPhiThue = chiPhiThue;
     }
 
     public int getSoLuongNguoiToiDa() {
@@ -63,11 +74,30 @@ public class Facility {
     @Override
     public String toString() {
         return "Facility{" +
+                "maDichVu='" + maDichVu + '\'' +
                 "tenDichVu='" + tenDichVu + '\'' +
                 ", dienTichSuDung=" + dienTichSuDung +
-                ", chiPhiPhiThue=" + chiPhiPhiThue +
+                ", chiPhiPhiThue=" + chiPhiThue +
                 ", soLuongNguoiToiDa=" + soLuongNguoiToiDa +
                 ", kieuThue='" + kieuThue + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Facility facility = (Facility) o;
+        return Double.compare(facility.dienTichSuDung, dienTichSuDung) == 0 &&
+                Double.compare(facility.chiPhiThue, chiPhiThue) == 0 &&
+                soLuongNguoiToiDa == facility.soLuongNguoiToiDa &&
+                maDichVu.equals(facility.maDichVu) &&
+                tenDichVu.equals(facility.tenDichVu) &&
+                kieuThue.equals(facility.kieuThue);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(maDichVu, tenDichVu, dienTichSuDung, chiPhiThue, soLuongNguoiToiDa, kieuThue);
     }
 }

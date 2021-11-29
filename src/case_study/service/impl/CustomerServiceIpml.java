@@ -1,19 +1,29 @@
-package case_study.service.Impl;
+package case_study.service.impl;
 
+import Candidate_Management_system.common.FileUtils;
+import case_study.common.FileUtilsCaseStudy;
 import case_study.models.Customer;
+import case_study.models.Employee;
 import case_study.service.CustomerService;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 public class CustomerServiceIpml implements CustomerService {
-    LinkedList<Customer> customers = new LinkedList<>();
+    static List<Customer> customerList = new LinkedList<>();
+    public static final String path = "E:\\CODEGYM\\C0921G1--Le-Van-Tien--Module2\\src\\case_study\\data\\custumer.csv";
+    {
+        customerList = covertStringToCustomer();
+    }
     @Override
     public void add() {
+        List<String> stringList = new LinkedList<>();
         Customer customer4 = new Customer();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập vào mã khách hàng");
-        customer4.setMaSo(scanner.nextLine());
+        customer4.setMaSo(Integer.parseInt(scanner.nextLine()));
         System.out.println("Nhập vào họ tên");
         customer4.setHoTen(scanner.nextLine());
         System.out.println("Nhập vào ngày sinh");
@@ -48,10 +58,9 @@ public class CustomerServiceIpml implements CustomerService {
                 customer4.setLoaiKhach("Member");
                 break;
         }
-        customers.add(customer4);
-        for (Customer customer: customers) {
-            System.out.println(customer);
-        }
+        customerList.add(customer4);
+        stringList.add(customer4.toString());
+        FileUtilsCaseStudy.writeFile(path, stringList, true);
 
     }
 
@@ -59,10 +68,10 @@ public class CustomerServiceIpml implements CustomerService {
     public void edit(int index) {
         Scanner scanner = new Scanner(System.in);
 
-        for (int i = 0; i < customers.size(); i++) {
+        for (int i = 0; i < customerList.size(); i++) {
             if(i == index){
                 System.out.println("Nhập mã khách hàng");
-                String maSo = scanner.nextLine();
+                int maSo = Integer.parseInt(scanner.nextLine());
                 System.out.println("Nhập Họ tên");
                 String hoTen = scanner.nextLine();
                 System.out.println("NHập ngày sinh");
@@ -82,49 +91,66 @@ public class CustomerServiceIpml implements CustomerService {
                 int choose = scanner.nextInt();
                 switch (choose){
                     case 1:
-                        customers.get(i).setLoaiKhach(".Diamond");
+                        customerList.get(i).setLoaiKhach(".Diamond");
                         break;
                     case 2:
-                        customers.get(i).setLoaiKhach(".Platinium");
+                        customerList.get(i).setLoaiKhach(".Platinium");
                         break;
                     case 3:
-                        customers.get(i).setLoaiKhach(".Gold");
+                        customerList.get(i).setLoaiKhach(".Gold");
                         break;
                     case 4:
-                        customers.get(i).setLoaiKhach(".Silver");
+                        customerList.get(i).setLoaiKhach(".Silver");
                         break;
                     case 5:
-                        customers.get(i).setLoaiKhach(".Member");
+                        customerList.get(i).setLoaiKhach(".Member");
                         break;
                 }
-                customers.get(i).setMaSo(maSo);
-                customers.get(i).setHoTen(hoTen);
-                customers.get(i).setNgaySinh(ngaySinh);
-                customers.get(i).setGioiTinh(gioiTinh);
-                customers.get(i).setSoCMND(soCMND);
-                customers.get(i).setSoDienThoai(soDienThoai);
-                customers.get(i).setDiaChi(diaChi);
-                customers.get(i).setEmail(email);
+                customerList.get(i).setMaSo(maSo);
+                customerList.get(i).setHoTen(hoTen);
+                customerList.get(i).setNgaySinh(ngaySinh);
+                customerList.get(i).setGioiTinh(gioiTinh);
+                customerList.get(i).setSoCMND(soCMND);
+                customerList.get(i).setSoDienThoai(soDienThoai);
+                customerList.get(i).setDiaChi(diaChi);
+                customerList.get(i).setEmail(email);
                 break;
             }
         }
+        List<String> stringList = covertEmployeeToString();
+        FileUtilsCaseStudy.writeFile(path, stringList, false);
     }
 
     @Override
     public void display() {
-        Customer customer1 = new Customer("222", "TonyBaggio", "1/1/2002", "Nam", 11111111, 999999999,
-                "vantienam@yahoo.com", "VIP", "12 Phạm Văn Nghị");
-        Customer customer2 = new Customer("222", "TonyBaggio", "1/1/2002", "Nam", 11111111, 999999999,
-                "vantienam@yahoo.com", "VIP", "12 Phạm Văn Nghị");
-        Customer customer3 = new Customer("222", "TonyBaggio", "1/1/2002", "Nam", 11111111, 999999999,
-                "vantienam@yahoo.com", "VIP", "12 Phạm Văn Nghị");
-
-        customers.add(customer1);
-        customers.add(customer2);
-        customers.add(customer3);
-
-        for (Customer customer: customers) {
+        for (Customer customer: customerList) {
             System.out.println(customer);
         }
+    }
+    public List<Customer> covertStringToCustomer() {
+        List<String> stringList = FileUtils.readFile(path);
+        List<Customer> customerList = new ArrayList<>();
+        String[] arrCustomer;
+        for (String line : stringList) {
+            arrCustomer = line.split(",");
+            customerList.add(new Customer(Integer.parseInt(arrCustomer[0]), arrCustomer[1], arrCustomer[2],
+                    arrCustomer[3], Integer.parseInt(arrCustomer[4]), Integer.parseInt(arrCustomer[5]), arrCustomer[6], arrCustomer[7],
+                    arrCustomer[8]));
+        }
+        return customerList;
+    }
+
+    public List<String> covertEmployeeToString() {
+        List<String> listString = new ArrayList<>();
+        for (Customer customer : customerList) {
+            listString.add(customer.toString());
+        }
+        return listString;
+    }
+
+    Scanner scanner = new Scanner(System.in);
+    public int maKhachHang(){
+        int choose = scanner.nextInt();
+        return customerList.get(choose -1).getMaSo();
     }
 }

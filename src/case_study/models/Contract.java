@@ -2,18 +2,18 @@ package case_study.models;
 
 import java.util.Objects;
 
-public class Contact {
+public class Contract {
     private int soHopDong;
     private String maBooking;
     private double soTienCocTruoc;
     private double tongSoTienThanhToan;
     private int maKhachHang;
 
-    public Contact() {
+    public Contract() {
     }
 
-    public Contact(int soHopDong, String maBooking, double soTienCocTruoc, double tongSoTienThanhToan,
-                   int maKhachHang) {
+    public Contract(int soHopDong, String maBooking, double soTienCocTruoc, double tongSoTienThanhToan,
+                    int maKhachHang) {
         this.soHopDong = soHopDong;
         this.maBooking = maBooking;
         this.soTienCocTruoc = soTienCocTruoc;

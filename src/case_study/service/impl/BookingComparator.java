@@ -1,4 +1,6 @@
-package case_study.models;
+package case_study.service.impl;
+
+import case_study.models.Booking;
 
 import java.util.Comparator;
 
@@ -20,7 +22,7 @@ public class BookingComparator implements Comparator<Booking> {
                 if(o1.getNgayKetThuc().compareTo(o2.getNgayKetThuc())>0){
                     return 1;
                 }else if(o1.getNgayKetThuc().compareTo(o2.getNgayKetThuc())<0){
-                    return 1;
+                    return -1;
                 }else {
                     return 0;
                 }

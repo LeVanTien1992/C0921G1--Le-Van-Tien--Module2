@@ -1,7 +1,7 @@
 package case_study.models;
 
-public class Person {
-    private String maSo;
+public abstract class Person {
+    private int maSo;
     private String hoTen;
     private String ngaySinh;
     private String gioiTinh;
@@ -13,7 +13,7 @@ public class Person {
 
     }
 
-    public Person(String maSo, String hoTen, String ngaySinh, String gioiTinh, int soCMND,
+    public Person(int maSo, String hoTen, String ngaySinh, String gioiTinh, int soCMND,
                   int soDienThoai, String email) {
         this.maSo = maSo;
         this.hoTen = hoTen;
@@ -24,11 +24,11 @@ public class Person {
         this.email = email;
     }
 
-    public String getMaSo() {
+    public int getMaSo() {
         return maSo;
     }
 
-    public void setMaSo(String maSo) {
+    public void setMaSo(int maSo) {
         this.maSo = maSo;
     }
 

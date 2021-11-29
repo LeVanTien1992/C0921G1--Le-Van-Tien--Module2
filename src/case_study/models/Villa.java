@@ -8,9 +8,9 @@ public class Villa extends Facility{
     public Villa() {
     }
 
-    public Villa(String tenDichVu, double dienTichSuDung, double chiPhiPhiThue, int soLuongNguoiToiDa,
-                 String kieuThue, String tieuChuanPhong, double dienTichHoBoi, int soTang) {
-        super(tenDichVu, dienTichSuDung, chiPhiPhiThue, soLuongNguoiToiDa, kieuThue);
+    public Villa(String maDichVu, String tenDichVu, double dienTichSuDung, double chiPhiThue,
+                 int soLuongNguoiToiDa, String kieuThue, String tieuChuanPhong, double dienTichHoBoi, int soTang) {
+        super(maDichVu, tenDichVu, dienTichSuDung, chiPhiThue, soLuongNguoiToiDa, kieuThue);
         this.tieuChuanPhong = tieuChuanPhong;
         this.dienTichHoBoi = dienTichHoBoi;
         this.soTang = soTang;
@@ -42,10 +42,15 @@ public class Villa extends Facility{
 
     @Override
     public String toString() {
-        return "Villa{" +
-                "tieuChuanPhong='" + tieuChuanPhong + '\'' +
-                ", dienTichHoBoi=" + dienTichHoBoi +
-                ", soTang=" + soTang +
-                '}';
+        return  getMaDichVu() +"," +
+                getTenDichVu() +"," +
+                getDienTichSuDung() + ","+
+                getChiPhiThue() + "," +
+                getSoLuongNguoiToiDa() + "," +
+                getKieuThue() + "," +
+                tieuChuanPhong+ "," +
+                dienTichHoBoi +"," +
+                soTang
+                ;
     }
 }

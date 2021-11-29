@@ -1,40 +1,48 @@
 package case_study.service.impl;
 
-import case_study.models.Contact;
+import Candidate_Management_system.common.FileUtils;
+import case_study.common.FileUtilsCaseStudy;
+import case_study.models.Contract;
+import case_study.models.Employee;
 import case_study.service.ContactService;
 
 import java.util.*;
 
-public class ContactServiceIpml implements ContactService {
-    static List<Contact> contactList = new LinkedList<>();
-    static Queue<Contact> contactQueue = new LinkedList<>();
+public class ContractServiceIpml implements ContactService {
+    static List<Contract> contractList = new LinkedList<>();
+    static Queue<Contract> contactQueue = new LinkedList<>();
     static Scanner scanner = new Scanner(System.in);
     CustomerServiceIpml customerServiceIpml = new CustomerServiceIpml();
     BookingServiceIpml bookingServiceIpml = new BookingServiceIpml();
-
+    public static final String path = "E:\\CODEGYM\\C0921G1--Le-Van-Tien--Module2\\src\\case_study\\data\\contract.csv";
+    {
+        contractList = covertStringToContract();   
+    }
 
     @Override
     public void add() {
-        Contact contact4 = new Contact();
+        List<String> stringList = new LinkedList<>();
+        Contract contract4 = new Contract();
         System.out.println("Thêm mới số hợp đồng");
-        contact4.setSoHopDong(Integer.parseInt(scanner.nextLine()));
+        contract4.setSoHopDong(Integer.parseInt(scanner.nextLine()));
         System.out.println("Thêm mới mã booking");
         bookingServiceIpml.display();
-        contact4.setMaBooking(bookingServiceIpml.maBooking());
+        contract4.setMaBooking(bookingServiceIpml.maBooking());
         System.out.println("Thêm mới số tiền cọc trước");
-        contact4.setSoTienCocTruoc(Double.parseDouble(scanner.nextLine()));
+        contract4.setSoTienCocTruoc(Double.parseDouble(scanner.nextLine()));
         System.out.println("Thêm mới tổng số tiền thanh toán");
-        contact4.setTongSoTienThanhToan(Double.parseDouble(scanner.nextLine()));
+        contract4.setTongSoTienThanhToan(Double.parseDouble(scanner.nextLine()));
         System.out.println("Thêm mới mã khách hàng");
         customerServiceIpml.display();
-        contact4.setMaKhachHang(customerServiceIpml.maKhachHang());
-        contactQueue.add(contact4);
-        display();
+        contract4.setMaKhachHang(customerServiceIpml.maKhachHang());
+        contactQueue.add(contract4);
+        stringList.add(contract4.toString());
+        FileUtilsCaseStudy.writeFile(path, stringList, true);
     }
 
     @Override
     public void edit(int index) {
-        for (int i = 0; i < contactList.size(); i++) {
+        for (int i = 0; i < contactQueue.size(); i++) {
             if(i == index){
                 System.out.println("Sửa số hợp đồng");
                 int soHopDong = Integer.parseInt(scanner.nextLine());
@@ -49,27 +57,42 @@ public class ContactServiceIpml implements ContactService {
                 customerServiceIpml.display();
                 int maKhachHang = customerServiceIpml.maKhachHang();
 
-                contactList.get(i).setSoHopDong(soHopDong);
-                contactList.get(i).setMaBooking(maBooking);
-                contactList.get(i).setSoTienCocTruoc(soTienCoc);
-                contactList.get(i).setTongSoTienThanhToan(tongSoTienThanhToan);
-                contactList.get(i).setMaKhachHang(maKhachHang);
+                contractList.get(i).setSoHopDong(soHopDong);
+                contractList.get(i).setMaBooking(maBooking);
+                contractList.get(i).setSoTienCocTruoc(soTienCoc);
+                contractList.get(i).setTongSoTienThanhToan(tongSoTienThanhToan);
+                contractList.get(i).setMaKhachHang(maKhachHang);
                 break;
             }
         }
-        display();
+        List<String> stringList = covertContractToString();
+        FileUtilsCaseStudy.writeFile(path, stringList, false);
     }
-    static {
-        contactQueue.add(new Contact(2311, "C0921G1", 500, 3000, 333));
-        contactQueue.add(new Contact(5611, "C0821G1", 500, 3000, 333));
-        contactQueue.add(new Contact(8711, "C0721G1", 500, 3000, 333));
-        contactList.addAll(contactQueue);
-    }
+
     @Override
     public void display() {
-        for (Contact contact:contactQueue) {
+        for (Contract contact:contactQueue) {
             System.out.println(contact);
         }
+    }
+    public List<Contract> covertStringToContract() {
+        List<String> stringList = FileUtils.readFile(path);
+        List<Contract> contactQueue = new LinkedList<>();
+        String[] arrContract;
+        for (String line : stringList) {
+            arrContract = line.split(",");
+            contactQueue.add(new Contract(Integer.parseInt(arrContract[0]), arrContract[1], Double.parseDouble(arrContract[2]),
+                    Double.parseDouble(arrContract[3]), Integer.parseInt(arrContract[4])));
+        }
+        return contactQueue;
+    }
+
+    public List<String> covertContractToString() {
+        List<String> listString = new LinkedList<>();
+        for (Contract contract : contactQueue) {
+            listString.add(contract.toString());
+        }
+        return listString;
     }
 
 

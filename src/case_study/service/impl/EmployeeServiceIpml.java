@@ -1,20 +1,29 @@
-package case_study.service.Impl;
+package case_study.service.impl;
 
+import Candidate_Management_system.common.FileUtils;
+import case_study.common.FileUtilsCaseStudy;
+import case_study.models.Customer;
 import case_study.models.Employee;
 import case_study.service.EmployeeService;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeServiceIpml implements EmployeeService {
-    ArrayList<Employee> employees = new ArrayList<>();
+    static List<Employee> employeeList = new ArrayList<>();
 
+    public static final String path = "E:\\CODEGYM\\C0921G1--Le-Van-Tien--Module2\\src\\case_study\\data\\employee.csv";
+    {
+        employeeList = covertStringToEmployee();
+    }
     @Override
     public void add() {
+        List<String> stringList = new ArrayList<>();
         Employee employee4 = new Employee();
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhập vào mã nhân viên");
-        employee4.setMaSo(sc.nextLine());
+        employee4.setMaSo(Integer.parseInt(sc.nextLine()));
         System.out.println("Nhập họ tên");
         employee4.setHoTen(sc.nextLine());
         System.out.println("Nhập ngày sinh");
@@ -71,19 +80,18 @@ public class EmployeeServiceIpml implements EmployeeService {
                 break;
 
         }
-        employees.add(employee4);
-        for (Employee e: employees) {
-            System.out.println(e);
-        }
+        employeeList.add(employee4);
+        stringList.add(employee4.toString());
+        FileUtilsCaseStudy.writeFile(path, stringList, true);
     }
 
     @Override
     public void edit(int index) {
         Scanner sc = new Scanner(System.in);
-        for (int i = 0; i < employees.size(); i++) {
+        for (int i = 0; i < employeeList.size(); i++) {
             if( i == index){
                 System.out.println("Nhập vào mã nhân viên");
-                String id = sc.nextLine();
+                int id = Integer.parseInt(sc.nextLine());
                 System.out.println("Nhập họ tên");
                 String hoTen = sc.nextLine();
                 System.out.println("Nhập ngày sinh");
@@ -103,16 +111,16 @@ public class EmployeeServiceIpml implements EmployeeService {
                 int choose1 = sc.nextInt();
                 switch (choose1){
                     case 1:
-                        employees.get(i).setTrinhDo("Trung Cấp");
+                        employeeList.get(i).setTrinhDo("Trung Cấp");
                         break;
                     case 2:
-                        employees.get(i).setTrinhDo("Cao Đẳng");
+                        employeeList.get(i).setTrinhDo("Cao Đẳng");
                         break;
                     case 3:
-                        employees.get(i).setTrinhDo("Đại Học");
+                        employeeList.get(i).setTrinhDo("Đại Học");
                         break;
                     case 4:
-                        employees.get(i).setTrinhDo("Sau dại học");
+                        employeeList.get(i).setTrinhDo("Sau dại học");
                         break;
 
                 }
@@ -121,56 +129,65 @@ public class EmployeeServiceIpml implements EmployeeService {
                 int choose2 = sc.nextInt();
                 switch (choose2){
                     case 1:
-                        employees.get(i).setViTri("Lễ Tân");
+                        employeeList.get(i).setViTri("Lễ Tân");
                         break;
                     case 2:
-                        employees.get(i).setViTri("Phục vụ");
+                        employeeList.get(i).setViTri("Phục vụ");
                         break;
                     case 3:
-                        employees.get(i).setViTri("Chuyên Viên");
+                        employeeList.get(i).setViTri("Chuyên Viên");
                         break;
                     case 4:
-                        employees.get(i).setViTri("Giám Sát");
+                        employeeList.get(i).setViTri("Giám Sát");
                         break;
                     case 5:
-                        employees.get(i).setViTri("Quản lý");
+                        employeeList.get(i).setViTri("Quản lý");
                         break;
                     case 6:
-                        employees.get(i).setViTri("Giám Đốc");
+                        employeeList.get(i).setViTri("Giám Đốc");
                         break;
 
                 }
-                employees.get(i).setMaSo(id);
-                employees.get(i).setHoTen(hoTen);
-                employees.get(i).setNgaySinh(ngaySinh);
-                employees.get(i).setGioiTinh(gioiTinh);
-                employees.get(i).setEmail(email);
-                employees.get(i).setLuong(luong);
-                employees.get(i).setSoDienThoai(soDienThoai);
-                employees.get(i).setSoCMND(soCMND);
+                employeeList.get(i).setMaSo(id);
+                employeeList.get(i).setHoTen(hoTen);
+                employeeList.get(i).setNgaySinh(ngaySinh);
+                employeeList.get(i).setGioiTinh(gioiTinh);
+                employeeList.get(i).setEmail(email);
+                employeeList.get(i).setLuong(luong);
+                employeeList.get(i).setSoDienThoai(soDienThoai);
+                employeeList.get(i).setSoCMND(soCMND);
                 break;
             }
         }
-
-
-        for (Employee e: employees) {
-            System.out.println(e);
-        }
+        List<String> stringList = covertEmployeeToString();
+        FileUtilsCaseStudy.writeFile(path, stringList, false);
     }
 
     @Override
     public void display() {
-        Employee employee1 = new Employee("111", "Elon Mark", "1/1/1111", "Nam", 111111, 999999, "elon@gmail.com", "Đại học", "CEO", 100000);
-        Employee employee2 = new Employee("222", "Elon Mark", "1/1/2222", "Nam", 111111, 999999, "elon@gmail.com", "Cao đẳng", "CEO", 100000);
-        Employee employee3 = new Employee("333", "Elon Mark", "1/1/3333", "Nam", 111111, 999999, "elon@gmail.com", "Trung cấp", "CEO", 100000);
-
-        employees.add(employee1);
-        employees.add(employee2);
-        employees.add(employee3);
-
-        for (Employee e: employees) {
-            System.out.println(e);
+        for (Employee employee: employeeList) {
+            System.out.println(employee);
         }
-
     }
+    public List<Employee> covertStringToEmployee() {
+        List<String> stringList = FileUtils.readFile(path);
+        List<Employee> employeeList = new ArrayList<>();
+        String[] arrEmployee;
+        for (String line : stringList) {
+            arrEmployee = line.split(",");
+            employeeList.add(new Employee(Integer.parseInt(arrEmployee[0]), arrEmployee[1], arrEmployee[2],
+                    arrEmployee[3], Integer.parseInt(arrEmployee[4]), Integer.parseInt(arrEmployee[5]), arrEmployee[6], arrEmployee[7],
+                    arrEmployee[8], Double.parseDouble(arrEmployee[9])));
+        }
+        return employeeList;
+    }
+
+    public List<String> covertEmployeeToString() {
+        List<String> listString = new ArrayList<>();
+        for (Employee employee : employeeList) {
+            listString.add(employee.toString());
+        }
+        return listString;
+    }
+
 }
