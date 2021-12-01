@@ -4,19 +4,19 @@ import Candidate_Management_system.common.FileUtils;
 import case_study.common.FileUtilsCaseStudy;
 import case_study.models.*;
 import case_study.service.FacilityService;
-import case_study.service.Service;
+import case_study.validate.ValidateFacility;
 
 import java.util.*;
 
 public class FacilityServiceIpml implements FacilityService {
-    static Map<Facility, Integer> map = new LinkedHashMap<>();
-    static Scanner scanner = new Scanner(System.in);
-    static List<String> stringList = new ArrayList<>();
+     Map<Facility, Integer> map = new LinkedHashMap<>();
+     Scanner scanner = new Scanner(System.in);
+     List<String> stringList = new ArrayList<>();
     ValidateFacility validateFacility = new ValidateFacility();
     {
-        map = covertStringToHouse();
-        map = covertStringToRoom();
-        map = covertStringToVilla();
+         covertStringToHouse(map);
+         covertStringToRoom(map);
+         covertStringToVilla(map);
     }
 //    {
 //        map = covertStringToRoom();
@@ -46,37 +46,37 @@ public class FacilityServiceIpml implements FacilityService {
     }
 
 
-    public Map<Facility, Integer> covertStringToHouse() {
+    public Map<Facility, Integer> covertStringToHouse(Map<Facility, Integer> linkedHashMap) {
         List<String> stringList = FileUtils.readFile(path_house);
-        Map<Facility, Integer> linkedHashMap = new LinkedHashMap<>();
+//        Map<Facility, Integer> linkedHashMap = new LinkedHashMap<>();
         String[] arrHouse;
         for (String line : stringList) {
             arrHouse = line.split(",");
             linkedHashMap.put((new House(arrHouse[0], arrHouse[1], Double.parseDouble(arrHouse[2]),
-                    Double.parseDouble(arrHouse[3]), Integer.parseInt(arrHouse[4]), arrHouse[5], arrHouse[6], Integer.parseInt(arrHouse[7]))), 3);
+                    Double.parseDouble(arrHouse[3]), Integer.parseInt(arrHouse[4]), arrHouse[5], arrHouse[6], Integer.parseInt(arrHouse[7]))), 1);
         }
         return linkedHashMap;
     }
-    public Map<Facility, Integer> covertStringToRoom() {
+    public Map<Facility, Integer> covertStringToRoom(Map<Facility, Integer> linkedHashMap) {
         List<String> stringList = FileUtils.readFile(path_room);
-        Map<Facility, Integer> linkedHashMap = new LinkedHashMap<>();
+//        Map<Facility, Integer> linkedHashMap = new LinkedHashMap<>();
         String[] arrRoom;
         for (String line : stringList) {
             arrRoom = line.split(",");
             linkedHashMap.put((new Room(arrRoom[0], arrRoom[1], Double.parseDouble(arrRoom[2]),
-                    Double.parseDouble(arrRoom[3]), Integer.parseInt(arrRoom[4]), arrRoom[5], arrRoom[6])), 3);
+                    Double.parseDouble(arrRoom[3]), Integer.parseInt(arrRoom[4]), arrRoom[5], arrRoom[6])), 1);
         }
         return linkedHashMap;
     }
-    public Map<Facility, Integer> covertStringToVilla() {
+    public Map<Facility, Integer> covertStringToVilla(Map<Facility, Integer> linkedHashMap) {
         List<String> stringList = FileUtils.readFile(path_villa);
-        Map<Facility, Integer> linkedHashMap = new LinkedHashMap<>();
+//        Map<Facility, Integer> linkedHashMap = new LinkedHashMap<>();
         String[] arrVilla;
         for (String line : stringList) {
             arrVilla = line.split(",");
             linkedHashMap.put((new Villa(arrVilla[0], arrVilla[1], Double.parseDouble(arrVilla[2]),
                     Double.parseDouble(arrVilla[3]), Integer.parseInt(arrVilla[4]), arrVilla[5], arrVilla[6],
-                    Double.parseDouble(arrVilla[7]), Integer.parseInt(arrVilla[8]))), 3);
+                    Double.parseDouble(arrVilla[7]), Integer.parseInt(arrVilla[8]))), 1);
         }
         return linkedHashMap;
     }
@@ -90,7 +90,6 @@ public class FacilityServiceIpml implements FacilityService {
     }
 
     public void addHouse(){
-
         House house1 = new House();
         System.out.println("Thêm vào mã dịch vụ");
         house1.setMaDichVu(validateFacility.validateMaDichVuHouse());
@@ -109,6 +108,7 @@ public class FacilityServiceIpml implements FacilityService {
         System.out.println("Thêm vào số tầng");
         house1.setSoTang(validateFacility.validateSoTang());
         map.put(house1,1);
+        stringList = new ArrayList<>();
         stringList.add(house1.toString());
         FileUtilsCaseStudy.writeFile(path_house, stringList, true);
     }
@@ -125,10 +125,19 @@ public class FacilityServiceIpml implements FacilityService {
         System.out.println("Thêm vào số lượng người tối đa");
         room1.setSoLuongNguoiToiDa(validateFacility.validateSoLuongNguoiToiDa());
         System.out.println("Thêm vào kiểu thuê");
-        room1.setKieuThue(scanner.nextLine());
+        room1.setKieuThue(validateFacility.validateKieuThue());
         System.out.println("Thêm vào dịch vụ miễn phí đi kèm");
-        room1.setDichVuMienPhiDiKem(scanner.nextLine());
-        map.put(room1,2);
+        room1.setDichVuMienPhiDiKem(validateFacility.validateDichVuDiKem());
+        for (Map.Entry<Facility, Integer> entry:map.entrySet()) {
+            int cong = map.get(entry.getKey());
+            if (map.containsKey(entry.getKey())){
+                map.put(entry.getKey() ,1);
+            }else {
+                map.put(entry.getKey(), cong + 1 );
+            }
+        }
+
+        stringList = new ArrayList<>();
         stringList.add(room1.toString());
         FileUtilsCaseStudy.writeFile(path_room, stringList, true);
     }
@@ -145,14 +154,15 @@ public class FacilityServiceIpml implements FacilityService {
         System.out.println("Thêm vào số lượng người tối đa");
         villa1.setSoLuongNguoiToiDa(validateFacility.validateSoLuongNguoiToiDa());
         System.out.println("Thêm vào kiểu thuê");
-        villa1.setKieuThue(scanner.nextLine());
+        villa1.setKieuThue(validateFacility.validateKieuThue());
         System.out.println("Thêm vào tiêu chuẩn phòng");
-        villa1.setTieuChuanPhong(scanner.nextLine());
+        villa1.setTieuChuanPhong(validateFacility.validateTieuChuanPhong());
         System.out.println("Thêm vào diện tích hồ bơi");
         villa1.setDienTichHoBoi(validateFacility.validateDienTichHoBoi());
         System.out.println("Thêm vào số tầng");
         villa1.setSoTang(validateFacility.validateSoTang());
-        map.put(villa1,3);
+        map.put(villa1,1);
+        stringList = new ArrayList<>();
         stringList.add(villa1.toString());
         FileUtilsCaseStudy.writeFile(path_villa, stringList, true);
     }

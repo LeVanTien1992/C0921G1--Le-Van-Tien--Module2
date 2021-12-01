@@ -63,13 +63,13 @@ public class Contract {
 
     @Override
     public String toString() {
-        return "Contact{" + "\t" +
-                soHopDong + "\t" +
-                maBooking + "\t" +
-                soTienCocTruoc +"\t" +
-                tongSoTienThanhToan +"\t"+
-                maKhachHang + "\t" +
-                '}';
+        return
+                soHopDong + "," +
+                maBooking + "," +
+                soTienCocTruoc +"," +
+                tongSoTienThanhToan +","+
+                maKhachHang
+                ;
     }
 
 }

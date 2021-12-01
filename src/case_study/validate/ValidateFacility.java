@@ -1,4 +1,4 @@
-package case_study.service.impl;
+package case_study.validate;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -28,15 +28,37 @@ public class ValidateFacility {
     }
     public String validateTieuChuanPhong(){
         while (true){
-            String roomStandard = sc.nextLine();
-            Pattern p = Pattern.compile("^[A-Z][a-z]+(\\s[A-Z][a-z]+)*$");
-            if(p.matcher(roomStandard).matches()){
-                return roomStandard;
+            String tieuChuanPhong = sc.nextLine();
+            Pattern p = Pattern.compile("^[a-zA-Z ]+$");
+            if(p.matcher(tieuChuanPhong).matches()){
+                return tieuChuanPhong;
             }else {
-                System.err.println("Thêm vào tiêu chuẩn phòng");
+                System.err.println("Vui Lòng Xin Nhập Lại!");
             }
         }
     }
+    public String validateDichVuDiKem(){
+        while (true){
+            String dichVuDiKem = sc.nextLine();
+            Pattern p = Pattern.compile("^[a-zA-Z ]+$");
+            if(p.matcher(dichVuDiKem).matches()){
+                return dichVuDiKem;
+            }else {
+                System.err.println("Vui Lòng Xin Nhập Lại!");
+            }
+        }
+    }
+//    public String validateTieuChuanPhong(){
+//        while (true){
+//            String roomStandard = sc.nextLine();
+//            Pattern p = Pattern.compile("^[A-Z][a-z]+(\\s[A-Z][a-z]+)*$");
+//            if(p.matcher(roomStandard).matches()){
+//                return roomStandard;
+//            }else {
+//                System.err.println("Thêm vào tiêu chuẩn phòng");
+//            }
+//        }
+//    }
     public String validateKieuThue(){
         while (true){
             String rentType = sc.nextLine();
