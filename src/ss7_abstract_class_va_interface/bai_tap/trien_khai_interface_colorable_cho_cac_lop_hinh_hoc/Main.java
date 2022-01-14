@@ -8,8 +8,10 @@ public class Main {
         c[2] = new Square(5);
         c[3] = new Square(5);
         for (Geometric geometric : c) {
-            if (geometric.equals(c[3])) {
+            if (c[2].equals(c[3])) {
                 System.out.println(geometric.getArea());
+            }else{
+                geometric.howToColor();
             }
         }
     }

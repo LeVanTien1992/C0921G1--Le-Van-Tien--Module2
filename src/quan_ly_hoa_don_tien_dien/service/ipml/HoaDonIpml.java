@@ -49,7 +49,33 @@ public class HoaDonIpml implements QuanLyHoaDon {
     @Override
     public void suaHoaDon(int index) {
         for (int i = 0; i < hoaDonTienDienList.size(); i++) {
-            if()
+            if(i == index){
+                Scanner scanner1 = new Scanner(System.in);
+                System.out.println("Nhập vào mã hóa đơn");
+                String maHoaDon = scanner1.nextLine();
+                System.out.println("Nhập vào mã khách hàng");
+                String maKhachHang = scanner1.nextLine();
+                System.out.println("Nhập vào ngày ra hóa đơn");
+                String ngayRaHoaDon = scanner1.nextLine();
+                System.out.println("Nhập vào số lượng kw");
+                int soLuongKw = Integer.parseInt(scanner1.nextLine());
+                System.out.println("Nhâp vào đơn giá");
+                int donGia = Integer.parseInt(scanner1.nextLine());
+                System.out.println("Nhập vào thành tiền");
+                int thanhTien= Integer.parseInt(scanner1.nextLine());
+
+                hoaDonTienDienList.get(i).setMaHoaDon(maHoaDon);
+                hoaDonTienDienList.get(i).setMaKhachHang(maKhachHang);
+                hoaDonTienDienList.get(i).setNgayRaHoaDon(ngayRaHoaDon);
+                hoaDonTienDienList.get(i).setSoLuongKw(soLuongKw);
+                hoaDonTienDienList.get(i).setDonGia(donGia);
+                hoaDonTienDienList.get(i).setThanhTien(thanhTien);
+                break;
+
+            }
+        }
+        for (HoaDonTienDien hoaDonTienDien:hoaDonTienDienList) {
+            System.out.println(hoaDonTienDien);
         }
     }
 }

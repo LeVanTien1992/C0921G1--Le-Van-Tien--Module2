@@ -3,7 +3,7 @@ package ss4_lop_va_doi_tuong_trong_java.bai_tap.xay_dung_lop_fan;
 import java.util.Objects;
 
 public class Fan {
-    public static final String slow = "SLOW", medium = "MEDIUM", fast = "FAST";
+    public static final int slow = 1, medium = 1, fast = 1;
     private int speed = 1;
     private boolean on = false;
     private double radius = 5;
@@ -16,7 +16,7 @@ public class Fan {
         this.color = color;
     }
 
-    public static String getSlow() {
+    public static int getSlow() {
         return slow;
     }
 

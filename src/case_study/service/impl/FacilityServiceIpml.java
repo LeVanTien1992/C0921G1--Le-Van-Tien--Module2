@@ -6,6 +6,11 @@ import case_study.models.*;
 import case_study.service.FacilityService;
 import case_study.validate.ValidateFacility;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class FacilityServiceIpml implements FacilityService {
@@ -136,7 +141,6 @@ public class FacilityServiceIpml implements FacilityService {
                 map.put(entry.getKey(), cong + 1 );
             }
         }
-
         stringList = new ArrayList<>();
         stringList.add(room1.toString());
         FileUtilsCaseStudy.writeFile(path_room, stringList, true);
@@ -165,5 +169,25 @@ public class FacilityServiceIpml implements FacilityService {
         stringList = new ArrayList<>();
         stringList.add(villa1.toString());
         FileUtilsCaseStudy.writeFile(path_villa, stringList, true);
+    }
+
+    public void displayFacilityMaintance(){
+        BookingServiceIpml bookingServiceIpml = new BookingServiceIpml();
+        Set<Booking> bookingSet = bookingServiceIpml.ngayThang();
+        Map<Facility, Integer> facilityIntegerMap = new LinkedHashMap<>();
+        for (Booking booking: bookingSet) {
+            for (Map.Entry<Facility, Integer> entry: map.entrySet()) {
+               if(entry.getKey().getTenDichVu().equals(booking.getTenDichVu())){
+                   if(!facilityIntegerMap.containsKey(entry.getKey())){
+                       facilityIntegerMap.put(entry.getKey(), 1);
+                   }else {
+                       facilityIntegerMap.put(entry.getKey(), facilityIntegerMap.get(entry.getKey())+1);
+                   }
+               }
+            }
+        }
+        for (Map.Entry<Facility, Integer> entry1: facilityIntegerMap.entrySet()) {
+            System.out.println(entry1.getKey() + "-" + "Số lần Booking đã được sử dụng " + entry1.getValue());
+        }
     }
 }

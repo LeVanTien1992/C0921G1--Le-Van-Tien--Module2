@@ -1,14 +1,16 @@
 package case_study.controller;
 
+import case_study.service.Service;
 import case_study.service.impl.*;
 
 import java.util.Scanner;
 
 public class FuramaController {
     Scanner sc = new Scanner(System.in);
-    EmployeeServiceIpml e = new EmployeeServiceIpml();
-    CustomerServiceIpml c = new CustomerServiceIpml();
-    FacilityServiceIpml f = new FacilityServiceIpml();
+    Service employeeServiceIpml = new EmployeeServiceIpml();
+    Service customerServiceIpml = new CustomerServiceIpml();
+    FacilityServiceIpml facilityServiceIpml = new FacilityServiceIpml();
+    PromotionServiceIpml promotionServiceIpml = new PromotionServiceIpml();
     BookingServiceIpml bookingServiceIpml = new BookingServiceIpml();
     ContractServiceIpml contactServiceIpml = new ContractServiceIpml();
     public void displayMainMenu(){
@@ -43,12 +45,12 @@ public class FuramaController {
                                 switch (choose){
                                     case 1:
                                         System.out.println("=========================");
-                                        e.display();
+                                        employeeServiceIpml.display();
                                         System.out.println("=========================");
                                         break;
                                     case 2:
                                         System.out.println("=========================");
-                                        e.add();
+                                        employeeServiceIpml.add();
                                         System.out.println("=========================");
                                         break;
                                     case 3:
@@ -56,7 +58,7 @@ public class FuramaController {
                                         Scanner scanner = new Scanner(System.in);
                                         System.out.println("Enter the position need to edit: ");
                                         int index = scanner.nextInt();
-                                        e.edit(index);
+                                        employeeServiceIpml.edit(index);
                                         System.out.println("=========================");
                                         break;
                                     case 4:
@@ -87,17 +89,20 @@ public class FuramaController {
                                 switch (choose){
                                     case 1:
                                         System.out.println("=========================");
-                                        c.display();
+                                        customerServiceIpml.display();
                                         System.out.println("=========================");
                                         break;
                                     case 2:
                                         System.out.println("=========================");
-                                        c.add();
+                                        customerServiceIpml.add();
                                         System.out.println("=========================");
                                         break;
                                     case 3:
                                         System.out.println("=========================");
-                                        System.out.println("3.Edit customers");
+                                        Scanner scanner = new Scanner(System.in);
+                                        System.out.println("Enter the position need to edit: ");
+                                        int index = scanner.nextInt();
+                                        customerServiceIpml.edit(index);
                                         System.out.println("=========================");
                                         break;
                                     case 4:
@@ -128,7 +133,7 @@ public class FuramaController {
                                switch (choose){
                                    case 1:
                                        System.out.println("=========================");
-                                       f.display();
+                                       facilityServiceIpml.display();
                                        System.out.println("=========================");
                                        break;
                                    case 2:
@@ -143,17 +148,17 @@ public class FuramaController {
                                                switch (choose1){
                                                    case 1:
                                                        System.out.println("=========================");
-                                                       f.addVilla();
+                                                       facilityServiceIpml.addVilla();
                                                        System.out.println("=========================");
                                                        break;
                                                    case 2:
                                                        System.out.println("=========================");
-                                                       f.addHouse();
+                                                       facilityServiceIpml.addHouse();
                                                        System.out.println("=========================");
                                                        break;
                                                    case 3:
                                                        System.out.println("=========================");
-                                                       f.addRoom();
+                                                       facilityServiceIpml.addRoom();
                                                        System.out.println("=========================");
                                                        break;
 //                                                   case 4:
@@ -170,7 +175,7 @@ public class FuramaController {
                                        break;
                                    case 3:
                                        System.out.println("=========================");
-                                       f.display();
+                                       facilityServiceIpml.displayFacilityMaintance();
                                        System.out.println("=========================");
                                        break;
                                    case 4:
@@ -256,12 +261,12 @@ public class FuramaController {
                                 switch (choose){
                                     case 1:
                                         System.out.println("=========================");
-                                        System.out.println("1.Display list customers use service");
+                                        promotionServiceIpml.hienThiDanhSachKhachHang();
                                         System.out.println("=========================");
                                         break;
                                     case 2:
                                         System.out.println("=========================");
-                                        System.out.println("2.Display list customers get voucher");
+
                                         System.out.println("=========================");
                                         break;
                                     case 3:

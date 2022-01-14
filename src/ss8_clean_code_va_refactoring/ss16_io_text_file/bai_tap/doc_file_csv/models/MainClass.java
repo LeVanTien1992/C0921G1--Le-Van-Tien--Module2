@@ -1,12 +1,12 @@
-package ss16_io_text_file.bai_tap.doc_file_csv.models;
+package ss8_clean_code_va_refactoring.ss16_io_text_file.bai_tap.doc_file_csv.models;
 
-import ss16_io_text_file.bai_tap.doc_file_csv.common.FileUtils;
+import ss8_clean_code_va_refactoring.ss16_io_text_file.bai_tap.doc_file_csv.common.FileUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainClass {
-    public static final String FILE_NAME = "E:\\CODEGYM\\C0921G1--Le-Van-Tien--Module2\\src\\ss16_io_text_file\\bai_tap\\doc_file_csv\\data\\country.csv";
+    public static final String FILE_NAME = "E:\\CODEGYM\\C0921G1--Le-Van-Tien--Module2\\src\\ss8_clean_code_va_refactoring.ss16_io_text_file\\bai_tap\\doc_file_csv\\data\\country.csv";
     public static final String COMMA = ",";
     public static void main(String[] args) {
         List<Country> countryList = new ArrayList<>();

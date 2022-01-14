@@ -1,8 +1,8 @@
 package quan_ly_phuong_tien_giao_thong.controller;
 
-import quan_ly_phuong_tien_giao_thong.service.Ipml.OToIpml;
-import quan_ly_phuong_tien_giao_thong.service.Ipml.XeMayIpml;
-import quan_ly_phuong_tien_giao_thong.service.Ipml.XeTaiIpml;
+import quan_ly_phuong_tien_giao_thong.service.ipml.OToIpml;
+import quan_ly_phuong_tien_giao_thong.service.ipml.XeMayIpml;
+import quan_ly_phuong_tien_giao_thong.service.ipml.XeTaiIpml;
 
 import java.util.Scanner;
 

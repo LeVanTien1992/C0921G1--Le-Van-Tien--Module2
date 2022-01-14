@@ -1,10 +1,10 @@
-package ss16_io_text_file.bai_tap.doc_file_csv.common;
+package ss8_clean_code_va_refactoring.ss16_io_text_file.bai_tap.doc_file_csv.common;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileUtils {
+public class   FileUtils {
     public static void writeFile(String pathFile, String line){
         try {
             FileWriter fileWriter = new FileWriter(pathFile, true);

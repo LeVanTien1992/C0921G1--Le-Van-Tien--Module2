@@ -1,4 +1,4 @@
-package ss16_io_text_file.thuc_hanh.tinh_tong_cac_so_trong_file_text;
+package ss8_clean_code_va_refactoring.ss16_io_text_file.thuc_hanh.tinh_tong_cac_so_trong_file_text;
 
 import java.io.BufferedReader;
 import java.io.File;

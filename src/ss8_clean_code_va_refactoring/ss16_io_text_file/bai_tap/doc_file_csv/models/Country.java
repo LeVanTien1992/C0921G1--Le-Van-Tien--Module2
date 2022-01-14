@@ -1,4 +1,4 @@
-package ss16_io_text_file.bai_tap.doc_file_csv.models;
+package ss8_clean_code_va_refactoring.ss16_io_text_file.bai_tap.doc_file_csv.models;
 
 public class Country {
     private int id;

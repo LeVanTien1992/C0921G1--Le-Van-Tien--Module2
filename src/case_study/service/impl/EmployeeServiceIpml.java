@@ -78,7 +78,6 @@ public class EmployeeServiceIpml implements EmployeeService {
             case 6:
                 employee4.setViTri("Giám Đốc");
                 break;
-
         }
         employeeList.add(employee4);
         stringList.add(employee4.toString());

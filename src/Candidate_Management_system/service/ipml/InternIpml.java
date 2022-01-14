@@ -1,5 +1,6 @@
 package Candidate_Management_system.service.ipml;
 
+import Candidate_Management_system.common.FileUtils;
 import Candidate_Management_system.models.Candidate;
 import Candidate_Management_system.models.Experience;
 import Candidate_Management_system.models.Intern;
@@ -10,11 +11,18 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InternIpml implements CandidateManagementSystem {
+
     static List<Intern> internList = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
     Validate validate = new Validate();
+    public static final String path = "E:\\CODEGYM\\C0921G1--Le-Van-Tien--Module2\\src\\Candidate_Management_system\\data\\intern.csv";
+
+    {
+        internList = covertStringToIntern();
+    }
     @Override
     public void add() {
+        List<String> stringList = new ArrayList<>();
         Intern intern4 = new Intern();
         System.out.println("Add new id");
         intern4.setId(Integer.parseInt(scanner.nextLine()));
@@ -27,7 +35,7 @@ public class InternIpml implements CandidateManagementSystem {
         System.out.println("Add new address");
         intern4.setAddress(scanner.nextLine());
 //        System.out.println("Add new phone");
-        intern4.setPhone(Integer.parseInt(validate.validatePhone()));
+        intern4.setPhone(validate.validatePhone());
 //        System.out.println("Add new email");
         intern4.setEmail(validate.validateEmail());
         System.out.println("Add new type");
@@ -39,7 +47,8 @@ public class InternIpml implements CandidateManagementSystem {
         System.out.println("Add new unniversity name");
         intern4.setUniversityName(scanner.nextLine());
         internList.add(intern4);
-        display();
+        stringList.add(intern4.toString());
+        FileUtils.writeFile(path, stringList, true);
     }
 
     @Override
@@ -57,7 +66,7 @@ public class InternIpml implements CandidateManagementSystem {
                 System.out.println("Edit the address");
                 String address = scanner.nextLine();
 //                System.out.println("Edit the phone");
-                int phone = Integer.parseInt(validate.validatePhone());
+                String phone = (validate.validatePhone());
 //                System.out.println("Edit the email");
                 String email = validate.validateEmail();
                 System.out.println("Edit the type");
@@ -83,7 +92,8 @@ public class InternIpml implements CandidateManagementSystem {
                 break;
             }
         }
-        display();
+        List<String> stringList = covertInternToString();
+        FileUtils.writeFile(path, stringList, false);
     }
 
     @Override
@@ -93,6 +103,8 @@ public class InternIpml implements CandidateManagementSystem {
                 internList.remove(internList.get(i));
             }
         }
+        List<String> stringList = covertInternToString();
+        FileUtils.writeFile(path, stringList, false);
     }
     public boolean check(String firstName){
         for (Intern intern:internList) {
@@ -103,21 +115,36 @@ public class InternIpml implements CandidateManagementSystem {
         return false;
     }
 
-    static {
-        internList.add(new Intern(101, "Waynee", "Rooney","11/1/2020", "1 NewYork", 9898989, "code@gmail.com","Exelent", "Accouting", 2, "Stanford"));
-        internList.add(new Intern(201, "Waynee", "Rooney","11/1/2020", "1 NewYork", 9898989, "code@gmail.com","Exelent", "Accouting", 2, "Stanford"));
-        internList.add(new Intern(301, "Cristiano", "Ronaldo","11/1/2020", "1 NewYork", 9898989, "code@gmail.com","Exelent", "Accouting", 2, "Stanford"));
-        internList.add(new Intern(401, "Leo", "Messi","11/1/2020", "1 NewYork", 9898989, "code@gmail.com","Exelent", "Accouting", 2, "Stanford"));
-    }
+
     @Override
     public void display() {
         for (Intern intern:internList) {
             System.out.println(intern);
         }
     }
+    public List<Intern> covertStringToIntern() {
+        List<String> stringList = FileUtils.readFile(path);
+        List<Intern> internList = new ArrayList<>();
+        String[] arrIntern;
+        for (String line : stringList) {
+            arrIntern = line.split(",");
+            internList.add(new Intern(Integer.parseInt(arrIntern[0]), arrIntern[1], arrIntern[2],
+                    arrIntern[3], arrIntern[4], arrIntern[5], arrIntern[6], arrIntern[7],
+                    arrIntern[8], Integer.parseInt(arrIntern[9]), arrIntern[10]));
+        }
+        return internList;
+    }
+
+    public List<String> covertInternToString() {
+        List<String> listString = new ArrayList<>();
+        for (Intern intern : internList) {
+            listString.add(intern.toString());
+        }
+        return listString;
+    }
 
     @Override
-    public void search(String firstName) {
+    public void search(String firstName){
         for (int i = 0; i < internList.size(); i++) {
             if(internList.get(i).getFirstName().contains(firstName)){
                 System.out.println(internList.get(i));

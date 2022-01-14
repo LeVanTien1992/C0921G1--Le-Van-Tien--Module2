@@ -1,8 +1,6 @@
-package quan_ly_phuong_tien_giao_thong.service.Ipml;
+package quan_ly_phuong_tien_giao_thong.service.ipml;
 
 import quan_ly_phuong_tien_giao_thong.models.HangSanXuat;
-import quan_ly_phuong_tien_giao_thong.models.OTo;
-import quan_ly_phuong_tien_giao_thong.models.XeMay;
 import quan_ly_phuong_tien_giao_thong.models.XeTai;
 import quan_ly_phuong_tien_giao_thong.service.XeTaiService;
 

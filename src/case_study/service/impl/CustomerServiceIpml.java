@@ -6,10 +6,7 @@ import case_study.models.Customer;
 import case_study.models.Employee;
 import case_study.service.CustomerService;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class CustomerServiceIpml implements CustomerService {
     static List<Customer> customerList = new LinkedList<>();
@@ -152,5 +149,8 @@ public class CustomerServiceIpml implements CustomerService {
     public int maKhachHang(){
         int choose = scanner.nextInt();
         return customerList.get(choose -1).getMaSo();
+    }
+    public List<Customer> customers(){
+        return customerList;
     }
 }

@@ -1,4 +1,4 @@
 package quan_ly_tai_khoan_ngan_hang.service;
 
-public interface TaiKhoanTietKiemService {
+public interface TaiKhoanTietKiemService extends HeThongQuanLy{
 }

@@ -1,7 +1,7 @@
 package ss14_thuat_toan_sap_xep.bai_tap.minh_hoa_thuat_toan_xep_xep_chen;
 
 public class MinhHoaThuatToanSapXepChen {
-    static int[] list = {2, 3, 2, 5, 6, 1, -2, 3, 14, 12};
+    static int[] list = {10, 7, 4, -1, 19, 3, 20, 5, 6, 1, -5, 3, 14, 12};
 
     public static void main(String[] args) {
         insertionSort(list);

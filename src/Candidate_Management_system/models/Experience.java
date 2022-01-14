@@ -8,7 +8,7 @@ public class Experience extends Candidate{
     }
 
     public Experience(int id, String firstName, String lastName, String birthDate, String address,
-                      int phone, String email, String type, int yearOfExperience, String professionalSkill) {
+                      String phone, String email, String type, int yearOfExperience, String professionalSkill) {
         super(id, firstName, lastName, birthDate, address, phone, email, type);
         this.yearOfExperience = yearOfExperience;
         this.professionalSkill = professionalSkill;
@@ -32,8 +32,8 @@ public class Experience extends Candidate{
 
     @Override
     public String toString() {
-        return getId()+"\t"+ getFirstName()+"\t"+ getLastName()+"\t"+getBirthDate()
-                +"\t"+getAddress()+"\t"+getPhone()+"\t"+getEmail()+"\t"+getType()+"\t"
-                +yearOfExperience+"\t"+professionalSkill;
+        return getId()+","+ getFirstName()+","+ getLastName()+","+getBirthDate()
+                +","+getAddress()+","+getPhone()+","+getEmail()+","+getType()+","
+                +yearOfExperience+","+professionalSkill;
     }
 }

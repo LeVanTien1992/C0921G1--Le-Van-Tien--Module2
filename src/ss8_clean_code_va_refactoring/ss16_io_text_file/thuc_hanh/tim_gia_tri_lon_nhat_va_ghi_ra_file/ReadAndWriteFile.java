@@ -1,4 +1,4 @@
-package ss16_io_text_file.thuc_hanh.tim_gia_tri_lon_nhat_va_ghi_ra_file;
+package ss8_clean_code_va_refactoring.ss16_io_text_file.thuc_hanh.tim_gia_tri_lon_nhat_va_ghi_ra_file;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -108,7 +108,7 @@ public class ValidateFacility {
         double chiPhiThue = Double.parseDouble(sc.nextLine());
         while (true){
            try {
-               if(chiPhiThue > 0){
+               if(chiPhiThue > 0 ){
                    return chiPhiThue;
                }else {
                    System.err.println("Thêm vào số chi phí thuê");
@@ -123,7 +123,7 @@ public class ValidateFacility {
         int soLuongNguoi = Integer.parseInt(sc.nextLine());
         while (true){
             try {
-                if(soLuongNguoi > 0 || soLuongNguoi < 20){
+                if(soLuongNguoi > 0 && soLuongNguoi < 20){
                     return soLuongNguoi;
                 }else {
                     System.err.println("Thêm vào số lượng người tối đa");
@@ -133,7 +133,6 @@ public class ValidateFacility {
             }
 
         }
-
     }
     public int validateSoTang(){
         int soTang = Integer.parseInt(sc.nextLine());

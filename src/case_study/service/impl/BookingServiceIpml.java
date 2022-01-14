@@ -7,6 +7,7 @@ import case_study.models.Customer;
 import case_study.models.Employee;
 import case_study.service.BookingService;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class BookingServiceIpml implements BookingService {
@@ -88,4 +89,19 @@ public class BookingServiceIpml implements BookingService {
     public Set<Booking> bookings(){
         return  bookingTreeSet;
     }
+    public Set<Booking> ngayThang(){
+        LocalDateTime now = LocalDateTime.now();
+        String month = String.valueOf(now.getMonthValue());
+        System.out.println(month);
+        Set<Booking> bookingSet2 = new LinkedHashSet<>();
+        for (Booking booking : bookingTreeSet){
+            String[] arrThangBatDau = booking.getNgayBatDau().split("/");
+            String[] arrThangKetThuc = booking.getNgayBatDau().split("/");
+            if (arrThangBatDau[1].equals(month) || arrThangKetThuc[1].equals(month)){
+                bookingSet2.add(booking);
+            }
+        }
+        return bookingSet2;
+    }
+
 }

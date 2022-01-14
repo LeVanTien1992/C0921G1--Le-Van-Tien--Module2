@@ -1,5 +1,7 @@
 package case_study.models;
 
+import java.util.Objects;
+
 public class Customer extends Person {
     private String loaiKhach;
     private String diaChi;
@@ -43,6 +45,14 @@ public class Customer extends Person {
                 getEmail() +  "," +
                 loaiKhach + "," +
                 diaChi;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return getMaSo() == customer.getMaSo();
     }
 
 

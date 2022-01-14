@@ -1,6 +1,6 @@
 package Candidate_Management_system.service.ipml;
 
-import Candidate_Management_system.models.Experience;
+import Candidate_Management_system.common.FileUtils;
 import Candidate_Management_system.models.Fresher;
 import Candidate_Management_system.service.CandidateManagementSystem;
 
@@ -12,8 +12,14 @@ public class FresherIpml implements CandidateManagementSystem {
     static List<Fresher> fresherList = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
     Validate validate = new Validate();
+    public static final String path = "E:\\CODEGYM\\C0921G1--Le-Van-Tien--Module2\\src\\Candidate_Management_system\\data\\fresher.csv";
+
+    {
+        fresherList = covertStringToFresher();
+    }
     @Override
     public void add() {
+        List<String> stringList = new ArrayList<>();
         Fresher fresher4 = new  Fresher();
         System.out.println("Add new id");
         fresher4.setId(Integer.parseInt(scanner.nextLine()));
@@ -26,7 +32,7 @@ public class FresherIpml implements CandidateManagementSystem {
         System.out.println("Add new address");
         fresher4.setAddress(scanner.nextLine());
 //        System.out.println("Add new phone");
-        fresher4.setPhone(Integer.parseInt(validate.validatePhone()));
+        fresher4.setPhone(validate.validatePhone());
 //        System.out.println("Add new email");
         fresher4.setEmail(validate.validateEmail());
         System.out.println("Add new type");
@@ -38,7 +44,8 @@ public class FresherIpml implements CandidateManagementSystem {
         System.out.println("Add new graduated university");
         fresher4.setGraduatedUniversity(scanner.nextLine());
         fresherList.add(fresher4);
-        display();
+        stringList.add(fresher4.toString());
+        FileUtils.writeFile(path, stringList, true);
     }
 
     @Override
@@ -56,7 +63,7 @@ public class FresherIpml implements CandidateManagementSystem {
                 System.out.println("Edit the address");
                 String address = scanner.nextLine();
 //                System.out.println("Edit the phone");
-                int phone = Integer.parseInt(validate.validatePhone());
+                String phone = (validate.validatePhone());
 //                System.out.println("Edit the email");
                 String email = validate.validateEmail();
                 System.out.println("Edit the type");
@@ -82,7 +89,8 @@ public class FresherIpml implements CandidateManagementSystem {
                 break;
             }
         }
-        display();
+        List<String> stringList = covertFresherToString();
+        FileUtils.writeFile(path, stringList, false);
     }
 
     @Override
@@ -92,6 +100,8 @@ public class FresherIpml implements CandidateManagementSystem {
                 fresherList.remove(fresherList.get(i));
             }
         }
+        List<String> stringList = covertFresherToString();
+        FileUtils.writeFile(path, stringList, false);
     }
 
     public boolean check(String firstName){
@@ -103,23 +113,37 @@ public class FresherIpml implements CandidateManagementSystem {
         return false;
     }
 
-    static {
-        fresherList.add(new Fresher(111, "John", "Newbie", "22/1/2000", "193 Nguyen Luong Bang",9999999, "bang@gmail.com","Good",1, "Excelent","Da Nang"));
-        fresherList.add(new Fresher(111, "John", "Newbie", "22/1/2000", "193 Nguyen Luong Bang",9999999, "bang@gmail.com","Good",1, "Excelent","Da Nang"));
-        fresherList.add(new Fresher(222, "Thomas", "Miller", "22/1/2000", "193 Nguyen Luong Bang",9999999, "bang@gmail.com","Good",1, "Excelent","Da Nang"));
-        fresherList.add(new Fresher(333, "John", "Even", "22/1/2000", "193 Nguyen Luong Bang",9999999, "bang@gmail.com","Good",1, "Excelent","Da Nang"));
-    }
     @Override
     public void display() {
         for (Fresher fresher:fresherList) {
             System.out.println(fresher);
         }
     }
+    public List<Fresher> covertStringToFresher() {
+        List<String> stringList = FileUtils.readFile(path);
+        List<Fresher> fresherList = new ArrayList<>();
+        String[] arrFresher;
+        for (String line : stringList) {
+            arrFresher = line.split(",");
+            fresherList.add(new Fresher(Integer.parseInt(arrFresher[0]), arrFresher[1], arrFresher[2],
+                    arrFresher[3], arrFresher[4], arrFresher[5], arrFresher[6], arrFresher[7],
+                    Integer.parseInt(arrFresher[8]), arrFresher[9], arrFresher[10]));
+        }
+        return fresherList;
+    }
+
+    public List<String> covertFresherToString() {
+        List<String> listString = new ArrayList<>();
+        for (Fresher fresher : fresherList) {
+            listString.add(fresher.toString());
+        }
+        return listString;
+    }
 
     @Override
-    public void search(String firstName) {
+    public void search(String firstName)  {
         for (int i = 0; i < fresherList.size(); i++) {
-            if(fresherList.get(i).getFirstName().contains(firstName)){
+            if(fresherList.get(i).getFirstName().equals(firstName)){
                 System.out.println(fresherList.get(i));
             }
         }

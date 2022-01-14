@@ -9,7 +9,7 @@ public class Intern extends Candidate{
     }
 
     public Intern(int id, String firstName, String lastName, String birthDate, String address,
-                  int phone, String email, String type, String majors, int semester, String universityName) {
+                  String phone, String email, String type, String majors, int semester, String universityName) {
         super(id, firstName, lastName, birthDate, address, phone, email, type);
         this.majors = majors;
         this.semester = semester;
@@ -42,8 +42,8 @@ public class Intern extends Candidate{
 
     @Override
     public String toString() {
-        return  getId()+"\t"+ getFirstName()+"\t"+ getLastName()+"\t"+getBirthDate()
-                +"\t"+getAddress()+"\t"+getPhone()+"\t"+getEmail()+"\t"+getType()+"\t"
-                + majors+"\t"+semester+"\t"+universityName;
+        return  getId()+","+ getFirstName()+","+ getLastName()+","+getBirthDate()
+                +","+getAddress()+","+getPhone()+","+getEmail()+","+getType()+","
+                + majors+","+semester+","+universityName;
     }
 }

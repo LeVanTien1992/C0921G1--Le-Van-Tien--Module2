@@ -2,9 +2,7 @@ package Candidate_Management_system.controller;
 
 import Candidate_Management_system.models.Experience;
 import Candidate_Management_system.models.Intern;
-import Candidate_Management_system.service.ipml.ExperienceIpml;
-import Candidate_Management_system.service.ipml.FresherIpml;
-import Candidate_Management_system.service.ipml.InternIpml;
+import Candidate_Management_system.service.ipml.*;
 
 import java.util.Scanner;
 
@@ -13,6 +11,7 @@ public class MeNu {
         ExperienceIpml experienceIpml = new ExperienceIpml();
         FresherIpml fresherIpml = new FresherIpml();
         InternIpml internipml = new InternIpml();
+        Validate validate = new Validate();
         Scanner scanner = new Scanner(System.in);
         int choose = 0;
         menu:
@@ -38,14 +37,20 @@ public class MeNu {
                     continue menu;
                 }
             }else if(choose == 4){
-                System.out.println("===========");
-                Scanner scanner1 = new Scanner(System.in);
-                System.out.println("Enter the first name need to find");
-                String firstName = scanner1.nextLine();
-                experienceIpml.search(firstName);
-                fresherIpml.search(firstName);
-                internipml.search(firstName);
-                System.out.println("===========");
+//                Scanner scanner1 = new Scanner(System.in);
+                String firstName = null;
+               while (true){
+                   try {
+                       System.out.println("Enter the first name need to find");
+                       firstName = validate.validateSearchFirstName();
+                       experienceIpml.search(firstName);
+                       fresherIpml.search(firstName);
+                       internipml.search(firstName);
+                       break ;
+                   } catch (InputException e) {
+                       e.printStackTrace();
+                   }
+               }
             }
         }
     }

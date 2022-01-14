@@ -9,7 +9,7 @@ public class Fresher extends Candidate{
     }
 
     public Fresher(int id, String firstName, String lastName, String birthDate, String address,
-                   int phone, String email, String type, int graduatedTime, String rankOfEducation, String graduatedUniversity) {
+                   String phone, String email, String type, int graduatedTime, String rankOfEducation, String graduatedUniversity) {
         super(id, firstName, lastName, birthDate, address, phone, email, type);
         this.graduatedTime = graduatedTime;
         this.rankOfEducation = rankOfEducation;
@@ -42,8 +42,8 @@ public class Fresher extends Candidate{
 
     @Override
     public String toString() {
-        return getId()+"\t"+ getFirstName()+"\t"+ getLastName()+"\t"+getBirthDate()
-                +"\t"+getAddress()+"\t"+getPhone()+"\t"+getEmail()+"\t"+getType()+"\t"
-                + graduatedTime+"\t"+rankOfEducation+"\t"+graduatedUniversity;
+        return getId()+","+ getFirstName()+","+ getLastName()+","+getBirthDate()
+                +","+getAddress()+","+getPhone()+","+getEmail()+","+getType()+","
+                + graduatedTime+","+rankOfEducation+","+graduatedUniversity;
     }
 }

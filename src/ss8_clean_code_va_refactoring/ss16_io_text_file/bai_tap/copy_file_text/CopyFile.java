@@ -1,10 +1,10 @@
-package ss16_io_text_file.bai_tap.copy_file_text;
+package ss8_clean_code_va_refactoring.ss16_io_text_file.bai_tap.copy_file_text;
 
 import java.io.*;
 
 public class CopyFile {
-    public static final String SOURCE_FILE = "E:\\CODEGYM\\C0921G1--Le-Van-Tien--Module2\\src\\ss16_io_text_file\\bai_tap\\copy_file_text\\source.csv";
-    public static final String TARGET_FILE = "E:\\CODEGYM\\C0921G1--Le-Van-Tien--Module2\\src\\ss16_io_text_file\\bai_tap\\copy_file_text\\target.csv";
+    public static final String SOURCE_FILE = "E:\\CODEGYM\\C0921G1--Le-Van-Tien--Module2\\src\\ss8_clean_code_va_refactoring.ss16_io_text_file\\bai_tap\\copy_file_text\\source.csv";
+    public static final String TARGET_FILE = "E:\\CODEGYM\\C0921G1--Le-Van-Tien--Module2\\src\\ss8_clean_code_va_refactoring.ss16_io_text_file\\bai_tap\\copy_file_text\\target.csv";
     //Bước 1: đọc được nội dung của source file
     public static String readFile(FileReader fileReader) {
         int i = 0;

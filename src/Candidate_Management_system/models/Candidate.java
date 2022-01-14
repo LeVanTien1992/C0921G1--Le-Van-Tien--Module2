@@ -6,7 +6,7 @@ public abstract class Candidate {
     private String lastName;
     private String birthDate;
     private String address;
-    private int phone;
+    private String phone;
     private String email;
     private String type;
 
@@ -14,7 +14,7 @@ public abstract class Candidate {
     }
 
     public Candidate(int id, String firstName, String lastName, String birthDate, String address,
-                     int phone, String email, String type) {
+                     String phone, String email, String type) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -65,12 +65,12 @@ public abstract class Candidate {
         this.address = address;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
-        this.phone = phone;
+    public String setPhone(String phone) {
+        return this.phone = phone;
     }
 
     public String getEmail() {
